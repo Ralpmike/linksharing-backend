@@ -9,10 +9,7 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendVerificationEmail = async (to, token, userName) => {
-  const url = `${
-    process.env.CLIENT_URL ||
-    "https://link-sharing-kappa.vercel.app/verify-email"
-  }/api/v1/auth/verify-email?token=${token}`;
+  const url = `$process.env.CLIENT_URL/verify-email?token=${token}`;
   return transporter.sendMail({
     from: '"LinkSharing App🈸" <no-reply@mernauth.com>',
     to,
