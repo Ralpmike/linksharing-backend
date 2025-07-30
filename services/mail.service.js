@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendVerificationEmail = async (to, token, userName) => {
-  const url = `$process.env.CLIENT_URL/verify-email?token=${token}`;
+  const url = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
   return transporter.sendMail({
     from: '"LinkSharing App🈸" <no-reply@mernauth.com>',
     to,
