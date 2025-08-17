@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
-const errorHandler = require("./middlewares/error.middleware");
+const globalErrorHandler = require("./middlewares/error.middleware");
 
 const app = express();
 
@@ -40,6 +40,13 @@ app.get("/", (req, res) => res.send("Hello World!"));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 
-app.use(errorHandler);
+// UNHANDLED ROUTES
+app.use((req, res, next) => {
+  // Pass error into global handler
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+
+// GLOBAL ERROR HANDLER 👇 (last middleware)
+app.use(globalErrorHandler);
 
 module.exports = app;
