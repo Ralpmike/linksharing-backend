@@ -29,7 +29,7 @@ exports.sendResetEmail = async (to, resetUrl) => {
 
 exports.sendOTPEmail = async (to, otp) => {
   return transporter.sendMail({
-    from: '"MERN Auth" <no-reply@mernauth.com>',
+    from: '"LinkSharing App🈸" <no-reply@mernauth.com>',
     to,
     subject: "Your OTP for 2FA Login",
     html: `<h3>Login Code</h3><p>Your 2FA code is <strong>${otp}</strong>. It will expire in 5 minutes.</p>`,
